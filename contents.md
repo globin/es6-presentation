@@ -3,6 +3,9 @@ ES6
 
 backwards compatibility
 
+let/const
+---
+
 for-of loop
 ---
 
@@ -41,15 +44,23 @@ var countIterator = {
   }
 };
 
-
-Generators
----
-
-Template Strings
----
-
 Rest and Default Parameters
 ---
+
+Arrow Functions
+---
+// ES5
+var total = values.reduce(function (a, b) {
+  return a + b;
+}, 0);
+
+// ES6
+var total = values.reduce((a, b) => a + b, 0);
+
+TODO: parens for parameters and return
+TODO: THIS!!!
+
+
 
 Destructuring
 ---
@@ -79,24 +90,19 @@ TODO: Destructuring in iteration over Map
 
 TODO: multiple return values
 
-
-Arrow Functions
+Class + subclassing
 ---
-// ES5
-var total = values.reduce(function (a, b) {
-  return a + b;
-}, 0);
 
-// ES6
-var total = values.reduce((a, b) => a + b, 0);
+Generators
+---
 
-TODO: parens for parameters and return
-TODO: THIS!!!
-
-Symbols
+modules
 ---
 
 Babel
+---
+
+Template Strings
 ---
 
 Set (+Weak)
@@ -105,14 +111,8 @@ Set (+Weak)
 Map (+Weak)
 ---
 
+Symbols
+---
+
 Proxy
----
-
-Class + subclassing
----
-
-let/const
----
-
-modules
 ---
