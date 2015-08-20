@@ -3,10 +3,10 @@ ES6
 
 backwards compatibility
 
-let/const
+let/const (Robin)
 ---
 
-for-of loop
+for-of loop (Jan)
 ---
 
 arrays:
@@ -44,10 +44,10 @@ var countIterator = {
   }
 };
 
-Rest and Default Parameters
+Rest and Default Parameters (Robin)
 ---
 
-Arrow Functions
+Arrow Functions (Jan)
 ---
 // ES5
 var total = values.reduce(function (a, b) {
@@ -62,7 +62,7 @@ TODO: THIS!!!
 
 
 
-Destructuring
+Destructuring (Robin)
 ---
 
 var [first, second] = [1, 2];
@@ -90,29 +90,29 @@ TODO: Destructuring in iteration over Map
 
 TODO: multiple return values
 
-Class + subclassing
+Class + subclassing (Jan)
 ---
 
-Generators
+Generators (Robin)
 ---
 
-modules
+modules (Jan)
 ---
 
-Babel
+Babel (Robin)
 ---
 
-Template Strings
+Template Strings (Jan)
 ---
 
-Set (+Weak)
+Set (+Weak) (Robin)
 ---
 
-Map (+Weak)
+Map (+Weak) (Jan)
 ---
 
-Symbols
+Symbols (Robin)
 ---
 
-Proxy
+Proxy (Jan)
 ---
