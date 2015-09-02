@@ -19,7 +19,8 @@ module.exports = function(grunt) {
     babel: {
       options: {
         sourceMap: true,
-        modules: 'common'
+        modules: 'common',
+        optional: ['es6.spec.blockScoping']
       },
       dist: {
         files: [{
