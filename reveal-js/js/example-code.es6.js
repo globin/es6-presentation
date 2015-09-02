@@ -16,7 +16,7 @@ class ExampleCode {
     renderSource() {
         return new Promise(resolve => {
             fetch(`js/${this.name}.es6.js`).then(response => response.text()).then(source => {
-                const strippedSource = source.split('// --SNIP--\n')[0];
+                const strippedSource = source.split('// --SNIP--\n')[0].replace('/* eslint-disable */\n', '');
                 const preEl = document.createElement('pre');
                 const codeEl = document.createElement('code');
                 codeEl.textContent = strippedSource;
@@ -39,23 +39,33 @@ class ExampleCode {
     }
 
     runExampleCode() {
-        System.import(`js/${this.name}.js`).then(this.renderResult.bind(this));
+        System.import(`js/${this.name}.js`)
+            .then(this.renderResult.bind(this, false))
+            .catch(this.renderResult.bind(this, true));
     }
 
-    renderResult(result) {
+    renderResult(errored, result) {
         const codeEl = this.node.querySelector('code');
 
-        codeEl.textContent = Object.keys(result).reduce((acc, key) => {
-            return acc.concat(`// ${key} = ${result[key]}`);
-        }, []).concat('', codeEl.textContent).join('\n');
+        codeEl.textContent = [].concat(
+            codeEl.textContent,
+            errored
+                ? result
+                : Object.keys(result).reduce((acc, key) => {
+                    return acc.concat(`// ${key} = ${result[key]}`);
+                }, [])
+        ).join('\n');
 
         hljs.highlightBlock(codeEl);
+        codeEl.scrollTop = codeEl.clientHeight;
+
+        this.node.querySelector('button').disabled = true;
     }
 
     static createExamples() {
         const exampleNodes = document.querySelectorAll('[data-example-code]');
 
-        for (const exampleNode of [...exampleNodes]) { // hack for chrome not iterating over NodeList
+        for (const exampleNode of exampleNodes) {
             new ExampleCode(exampleNode).render();
         }
     }
