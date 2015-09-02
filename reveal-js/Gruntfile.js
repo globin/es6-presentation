@@ -33,7 +33,12 @@ module.exports = function(grunt) {
       }
     },
     browserify: {
-        'build/module.js': [
+      options: {
+        browserifyOptions: {
+          debug: true
+        }
+      },
+      'build/module.js': [
           'js/**/*.js',
           '!js/**/*.es6.js',
           '!js/reveal*.js'
