@@ -39,9 +39,10 @@ class ExampleCode {
     }
 
     runExampleCode() {
-        System.import(`js/${this.name}.js`)
-            .then(this.renderResult.bind(this, false))
-            .catch(this.renderResult.bind(this, true));
+        System.import(`js/${this.name}.js`).then(
+            this.renderResult.bind(this, false),
+            this.renderResult.bind(this, true)
+        );
     }
 
     renderResult(errored, result) {
@@ -52,7 +53,7 @@ class ExampleCode {
             errored
                 ? result
                 : Object.keys(result).reduce((acc, key) => {
-                    return acc.concat(`// ${key} = ${result[key]}`);
+                    return acc.concat(`${key} = ${JSON.stringify(result[key], null, '    ')}`);
                 }, [])
         ).join('\n');
 
