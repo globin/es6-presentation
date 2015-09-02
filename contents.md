@@ -5,6 +5,7 @@ backwards compatibility
 
 let/const (Robin)
 ---
+DONE
 
 for-of loop (Jan)
 ---
@@ -44,10 +45,7 @@ var countIterator = {
   }
 };
 
-Rest and Default Parameters (Robin)
----
-
-Arrow Functions (Jan)
+Rest and Default Parameters & Arrow Functions (Robin)
 ---
 // ES5
 var total = values.reduce(function (a, b) {
@@ -101,6 +99,8 @@ modules (Jan)
 
 Babel (Robin)
 ---
+make sure to always include polyfill and optional ['es6.spec.blockScoping']
+mvs app as example
 
 Template Strings (Jan)
 ---
