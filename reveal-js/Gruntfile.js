@@ -18,7 +18,8 @@ module.exports = function(grunt) {
     },
     babel: {
       options: {
-        sourceMap: true
+        sourceMap: true,
+        modules: 'common'
       },
       dist: {
         files: [{
@@ -29,6 +30,13 @@ module.exports = function(grunt) {
           ext: '.js'
         }]
       }
+    },
+    browserify: {
+        'build/module.js': [
+          'js/**/*.js',
+          '!js/**/*.es6.js',
+          '!js/reveal*.js'
+        ]
     },
     uglify: {
       options: {
@@ -43,7 +51,7 @@ module.exports = function(grunt) {
     sass: {
       core: {
         files: {
-          'css/reveal.css': 'css/reveal.scss',
+          'css/reveal.css': 'css/reveal.scss'
         }
       },
       themes: {
@@ -73,29 +81,11 @@ module.exports = function(grunt) {
       }
     },
 
-    jshint: {
+    eslint: {
       options: {
-        curly: false,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        eqnull: true,
-        browser: true,
-        expr: true,
-        globals: {
-          head: false,
-          module: false,
-          console: false,
-          unescape: false,
-          define: false,
-          exports: false
-        }
+        configFile: '.eslintrc'
       },
-      files: [ 'Gruntfile.js', 'js/reveal.js' ]
+      files: [ 'js/**/*.es6.js' ]
     },
 
     connect: {
@@ -143,23 +133,13 @@ module.exports = function(grunt) {
 
   });
 
-  // Dependencies
-  grunt.loadNpmTasks( 'grunt-contrib-qunit' );
-  grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-  grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
-  grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-  grunt.loadNpmTasks( 'grunt-contrib-watch' );
-  grunt.loadNpmTasks( 'grunt-sass' );
-  grunt.loadNpmTasks( 'grunt-contrib-connect' );
-  grunt.loadNpmTasks( 'grunt-autoprefixer' );
-  grunt.loadNpmTasks( 'grunt-zip' );
-  grunt.loadNpmTasks( 'grunt-babel' );
+  require('load-grunt-tasks')(grunt);
 
   // Default task
   grunt.registerTask( 'default', [ 'css', 'js' ] );
 
   // JS task
-  grunt.registerTask( 'js', [ 'babel', 'jshint', 'uglify' ] );
+  grunt.registerTask( 'js', [ 'eslint', 'babel', 'browserify', 'uglify' ] );
 
   // Theme CSS
   grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
