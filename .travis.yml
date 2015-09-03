@@ -3,7 +3,7 @@ node_js:
   - "0.12"
 before_install: npm install -g grunt-cli
 install: cd reveal-js && npm install
-before_script: grunt package
+script: grunt package
 after_success: |
   [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
