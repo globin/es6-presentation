@@ -80,7 +80,8 @@ module.exports = function(grunt) {
         'index.html',
         'build/**',
         'lib/**',
-        'plugin/**'
+        'plugin/**',
+        'js/**/*.es6.js'
       ]
     },
 
