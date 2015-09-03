@@ -3,7 +3,7 @@ node_js:
   - "0.12"
 before_install: npm install -g grunt-cli
 install: cd reveal-js && npm install
-before_script: cd reveal-js && grunt package
+before_script: grunt package
 after_success: |
   [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
@@ -21,7 +21,7 @@ after_success: |
   git config user.name "doc upload bot" &&
   git config user.email "nobody@example.com" &&
   rm -rf * &&
-  unzip ../reveal-js/es6.zip &&
+  unzip ../es6.zip &&
   echo es6.glob.in > CNAME &&
   git add -A . &&
   git commit -qm "doc upload for es6-presentation ($TRAVIS_REPO_SLUG)" &&
