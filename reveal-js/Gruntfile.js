@@ -6,16 +6,6 @@ module.exports = function(grunt) {
   // Project configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    meta: {
-      banner:
-        '/*!\n' +
-        ' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
-        ' * http://lab.hakim.se/reveal-js\n' +
-        ' * MIT licensed\n' +
-        ' *\n' +
-        ' * Copyright (C) 2015 Hakim El Hattab, http://hakim.se\n' +
-        ' */'
-    },
     babel: {
       options: {
         sourceMap: true,
@@ -36,56 +26,34 @@ module.exports = function(grunt) {
       options: {
         browserifyOptions: {
           debug: true
-        }
+        },
+        transform: ['deamdify']
       },
       'build/module.js': [
-          'js/**/*.js',
-          '!js/**/*.es6.js',
-          '!js/reveal*.js'
-        ]
+        '!js/reveal*',
+        'js/**/*.js',
+        '!js/**/*.es6.js'
+      ]
     },
-    uglify: {
-      options: {
-        banner: '<%= meta.banner %>\n'
-      },
-      build: {
-        src: 'js/reveal.js',
-        dest: 'js/reveal.min.js'
-      }
-    },
-
     sass: {
       core: {
         files: {
-          'css/reveal.css': 'css/reveal.scss'
+          'build/reveal.css': 'node_modules/reveal.js/css/reveal.scss'
         }
       },
       themes: {
         files: [
           {
             expand: true,
-            cwd: 'css/theme/source',
+            cwd: 'scss',
             src: ['*.scss'],
-            dest: 'css/theme',
+            dest: 'build',
             ext: '.css'
           }
         ]
       }
     },
 
-    autoprefixer: {
-      dist: {
-        src: 'css/reveal.css'
-      }
-    },
-
-    cssmin: {
-      compress: {
-        files: {
-          'css/reveal.min.css': [ 'css/reveal.css' ]
-        }
-      }
-    },
 
     eslint: {
       options: {
@@ -106,12 +74,12 @@ module.exports = function(grunt) {
     },
 
     zip: {
-      'reveal-js-presentation.zip': [
+      'es6.zip': [
+        'node_modules/babel-core/browser-polyfill.js',
+        'node_modules/systemjs/dist/system.js',
         'index.html',
-        'css/**',
-        'js/**',
+        'build/**',
         'lib/**',
-        'images/**',
         'plugin/**'
       ]
     },
@@ -124,13 +92,9 @@ module.exports = function(grunt) {
         files: [ 'Gruntfile.js', 'js/reveal.js', 'js/*.es6.js' ],
         tasks: 'js'
       },
-      theme: {
-        files: [ 'css/theme/source/*.scss', 'css/theme/template/*.scss' ],
-        tasks: 'css-themes'
-      },
       css: {
-        files: [ 'css/reveal.scss' ],
-        tasks: 'css-core'
+        files: [ 'scss/*', 'Gruntfile.js' ],
+        tasks: 'sass'
       },
       html: {
         files: [ 'index.html']
@@ -142,25 +106,16 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task
-  grunt.registerTask( 'default', [ 'css', 'js' ] );
+  grunt.registerTask( 'default', [ 'sass', 'js' ] );
 
   // JS task
-  grunt.registerTask( 'js', [ 'eslint', 'babel', 'browserify', 'uglify' ] );
-
-  // Theme CSS
-  grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
-
-  // Core framework CSS
-  grunt.registerTask( 'css-core', [ 'sass:core', 'autoprefixer', 'cssmin' ] );
-
-  // All CSS
-  grunt.registerTask( 'css', [ 'sass', 'autoprefixer', 'cssmin' ] );
+  grunt.registerTask( 'js', [ 'eslint', 'babel', 'browserify' ] );
 
   // Package presentation to archive
   grunt.registerTask( 'package', [ 'default', 'zip' ] );
 
   // Serve presentation locally
-  grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
+  grunt.registerTask( 'serve', [ 'default', 'connect', 'watch' ] );
 
   // Run tests
   grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );

@@ -1,4 +1,5 @@
-/* global Reveal, hljs */
+/* global hljs */
+import Reveal from 'reveal.js/js/reveal.js';
 
 class ExampleCode {
     constructor(node) {
