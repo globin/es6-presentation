@@ -1,5 +1,5 @@
-/* global hljs */
 import Reveal from 'reveal.js/js/reveal.js';
+import hljs from 'highlightjs/highlight.pack.min.js';
 
 class ExampleCode {
     constructor(node) {

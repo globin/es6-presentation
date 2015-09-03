@@ -1,8 +1,15 @@
-/* global hljs */
-
 import Reveal from 'reveal.js/js/reveal.js';
+import hljs from 'highlightjs/highlight.pack.min.js';
 
 window.Reveal = Reveal;
+
+Reveal.addEventListener('ready', () => {
+    const hljsNodes = document.querySelectorAll('pre code');
+
+    for (const node of hljsNodes) {
+        hljs.highlightBlock(node);
+    }
+});
 
 Reveal.initialize({
     controls: true,
@@ -30,13 +37,6 @@ Reveal.initialize({
             src: 'plugin/markdown/markdown.js',
             condition: function () {
                 return !!document.querySelector('[data-markdown]');
-            }
-        },
-        {
-            src: 'plugin/highlight/highlight.js',
-            async: true,
-            callback: function () {
-                hljs.initHighlightingOnLoad();
             }
         },
         {

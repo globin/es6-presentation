@@ -77,6 +77,7 @@ module.exports = function(grunt) {
       'es6.zip': [
         'node_modules/babel-core/browser-polyfill.js',
         'node_modules/systemjs/dist/system.js',
+        'node_modules/highlightjs/highlight.pack.min.js',
         'index.html',
         'build/**',
         'lib/**',
