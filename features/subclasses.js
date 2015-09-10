@@ -35,7 +35,7 @@ class ScalableCircle extends Circle {
 //----------IN ES5-------------------------------------------------
 //JS Inheritance with:
     var temp = {
-    value: 4
+    value: 4,
     name() {return "bla";}
 };
 
