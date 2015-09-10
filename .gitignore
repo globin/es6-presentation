@@ -1,4 +1,4 @@
-reveal-js/js/*.js
-reveal-js/js/*.js.map
-!reveal-js/js/*.es6.js
+reveal-js/js/**/*.js
+reveal-js/js/**/*.js.map
+!reveal-js/js/**/*.es6.js
 reveal-js/build
