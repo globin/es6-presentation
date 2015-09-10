@@ -40,7 +40,7 @@ var total = values.reduce((a, b) => a + b, 0);
  }
 * */
 
-// EXAMPLE FOR JS OBJECT LITERAL (comma-seperated LIST of name-value pairs)
+// EXAMPLE FOR JS OBJECT LITERAL (comma-separated LIST of name-value pairs)
 var Swapper = {
     // an array literal
     images: ["smile.gif", "grim.gif", "frown.gif", "bomb.gif"],
@@ -69,7 +69,7 @@ var Swapper = {
 addAll: function addAll(pieces) {
     var self = this;
     _.each(pieces, function (piece) {
-        self.add(piece); //can't use this, because "this" will refere to the caller of each(), which in this case is the underscore _.
+        self.add(piece); //can't use this, because "this" will refer to the caller of each(), which in this case is the underscore _.
     });
 }
 }
