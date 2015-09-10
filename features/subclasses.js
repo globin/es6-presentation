@@ -45,7 +45,7 @@ class ScalableCircle extends Circle {
 //---------------------------------------------------------------
 
 
-
+/*
 //AB HIER: ADDITIONAL INFORMATION (+ maybe not useful stuff)
 //--------NOT USEFUL?!---------------------------------------------------------------
 class Circle {
@@ -84,4 +84,4 @@ class Circle extends Shape {
         super(color); //<-----------------------
         this.radius = radius;
     }
-}
+}*/
