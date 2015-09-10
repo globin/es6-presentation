@@ -48,39 +48,63 @@
 				<section>
 					<section>
 						<h2>Let/Const</h2>
+						<aside class="notes">
+							probably most will know some interesting problems of var, let and const fix these
+						</aside>
 					</section>
 
 					<section>
 						<div data-example-code="let-const"></div>
-						<aside class="notes">Var declaration gets "pulled up" to the top.</aside>
+						<aside class="notes">
+							Imagine some code between the first assignment and var. Want to set the outer value to
+							a new value. What happens here?
+							Var declaration gets "pulled up" to the top.
+							By now linters catch these things but always need additional tools.
+						</aside>
 					</section>
 
 					<section>
 						<div data-example-code="let-const-2"></div>
-						<aside class="notes">Make sure to enable optional: ['es6.spec.blockScoping']</aside>
+						<aside class="notes">
+							Now we get a nice error.
+							Make sure to enable optional: ['es6.spec.blockScoping'], mentioned in Babel
+						</aside>
+					</section>
+
+					<section>
+						<div data-example-code="let-const-3"></div>
+						<aside class="notes">
+							let/const are block-scoped not function scoped,
+							error results from someVar only being defined inside the if (for, while, you get it)
+						</aside>
 					</section>
 
 					<section>
 						<div data-example-code="let-const-6"></div>
 						(adapted from Understanding ECMAScript 6)
+						<aside class="notes">
+							What is the result here? 3, 3, 3
+							Why? i is defined in the outer scope
+							How to fix? self-executing function.
+						</aside>
 					</section>
 
 					<section>
 						<div data-example-code="let-const-7"></div>
+						<aside class="notes">
+							Works because of the block-level-scoping from before
+						</aside>
 					</section>
 
-					<section>
-						<div data-example-code="let-const-3"></div>
-					</section>
 
 					<section>
 						<div data-example-code="let-const-4"></div>
-						<aside class="notes">Block level, too.</aside>
+						<aside class="notes">cannot reassign to const</aside>
 					</section>
 
 					<section>
 						<div data-example-code="let-const-5"></div>
-						<aside class="notes">Block level, too.</aside>
+						<aside class="notes">be careful! interior mutability is unchanged</aside>
 					</section>
                 </section>
 
@@ -89,7 +113,39 @@
 						<h2>Functions</h2>
 					</section>
 					<section>Arrow Functions (TODO)</section>
-					<section>Default/Rest params (TODO)</section>
+					<section>
+						<h3>Default Parameters</h3>
+						<div data-example-code="functions/default-param-old"></div>
+						<aside class="notes">
+							Misusing short-circuiting OR to make default params.
+						</aside>
+					</section>
+					<section>
+						<h3>Default Parameters</h3>
+						<div data-example-code="functions/default-param"></div>
+					</section>
+					<section>
+						<h3>Rest Parameters</h3>
+						<div data-example-code="functions/rest-param-old"></div>
+						<aside class="notes">
+							Having to slice arguments magic variable
+						</aside>
+					</section>
+					<section>
+						<h3>Rest Parameters</h3>
+						<div data-example-code="functions/rest-param"></div>
+					</section>
+					<section>
+						<h3>Spread Operator</h3>
+						<div data-example-code="functions/spread-operator-old"></div>
+						<aside class="notes">
+							Have to use function.call and need to take care of setting scope
+						</aside>
+					</section>
+					<section>
+						<h3>Spread Operator</h3>
+						<div data-example-code="functions/spread-operator"></div>
+					</section>
 				</section>
 
 				<section>
@@ -98,84 +154,63 @@
 					</section>
 					<section>
 						<div data-example-code="destructuring/array"></div>
-					</section>
-					<section>
-						<div data-example-code="destructuring/nested"></div>
-					</section>
-					<section>
-						<div data-example-code="destructuring/skip"></div>
-					</section>
-					<section>
-						<div data-example-code="destructuring/rest"></div>
-					</section>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
 						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
+							Simple array destruction
 						</aside>
 					</section>
 					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
+						<div data-example-code="destructuring/nested"></div>
+						<aside class="notes">
+							Can be nested
+						</aside>
+					</section>
+					<section>
+						<div data-example-code="destructuring/skip"></div>
+						<aside class="notes">
+							One can easily skip some elements
+						</aside>
+					</section>
+					<section>
+						<div data-example-code="destructuring/rest"></div>
+						<aside class="notes">
+							Can destruct to some elements and a rest
+						</aside>
+					</section>
+					<section>
+						<div data-example-code="destructuring/object"></div>
+						<aside class="notes">
+							Same for objects
+						</aside>
+					</section>
+					<section>
+						<div data-example-code="destructuring/object-short"></div>
+						<aside class="notes">
+							Short form
+						</aside>
+					</section>
+					<section>
+						<div data-example-code="destructuring/object-complex"></div>
+						<aside class="notes">
+							Complex example (hopefully nobody ever does that)
+						</aside>
 					</section>
 				</section>
 
 				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
+					<section>
+						<h2>Generators</h2>
+					</section>
+					<section>TODO</section>
 				</section>
 
 				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
+					<section>
+						<h2>Transpiler (Babel)</h2>
+					</section>
+					<section>
+						TODO
+						(make sure to always include polyfill and optional ['es6.spec.blockScoping'])
+					</section>
 				</section>
 			</div>
 
