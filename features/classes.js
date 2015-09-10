@@ -45,14 +45,17 @@ Object.defineProperty(Circle, "circlesMade", {
 });
 
 //add property "area" to prototype (why not Circle.area = function area(){...} ?? Like with function draw)
+//Answer: because Circle.area is a static property (class property), an individual instance of circle does not get this property
 Circle.prototype = {
     area: function area() {
         return Math.pow(this.radius, 2) * Math.PI;
     }
 };
 
-//(??) difference between defineProperty(Circle) and defineProperty(Circle.prototype) ??
+//(??) difference between 1) defineProperty(Circle) and 2) defineProperty(Circle.prototype) ??
+//Answer: 1) adds static property, 2) adds property, that each instance of Circle has
 //(??) why do we need getter function, we already have radius in the constructor.
+// Answer: probably because of Exception handling
 Object.defineProperty(Circle.prototype, "radius", {
     get: function() {
         return this._radius;
@@ -99,3 +102,10 @@ class Circle {
         this._radius = radius;
     };
 }
+
+/*
+* - everything grouped together
+* - looks very clean and nice
+*
+* special/edge cases: see https://hacks.mozilla.org/2015/07/es6-in-depth-classes/
+* */
