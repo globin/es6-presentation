@@ -1,13 +1,15 @@
-// ES 5:
-var a = 3;
-var b = 5;
-var total_es5 = values.reduce(function (a, b) {
-    return a + b;
-}, 0);
 
-// ES6
-//var total_es6 = values.reduce((a, b) => a + b, 0);
+//Syntactical difference
+
+//ES5
+var sum = function(a,b){
+    return a + b;
+};
+
+//ES6
+var sum = (a,b) => a + b;
+
 
 // --SNIP--
 
-export default (total_es5, total_es6);
+export default (sum);
