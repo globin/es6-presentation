@@ -52,7 +52,6 @@
 							probably most will know some interesting problems of var, let and const fix these
 						</aside>
 					</section>
-
 					<section>
 						<div data-example-code="let-const"></div>
 						<aside class="notes">
@@ -107,6 +106,29 @@
 						<aside class="notes">be careful! interior mutability is unchanged</aside>
 					</section>
                 </section>
+
+				<section>
+					<h2>for-of loop</h2>
+						<pre>
+							<code>
+var arr = ["banana", "orange", "apple"];
+	for (var i = 0; i < arr.length; i++){
+	arr.forEach(function(entry){
+	console.log(entry);
+});
+
+arr.name = "FRUITS";
+for(var x in arr){
+	console.log(arr[x]);
+}
+
+for(var x of arr){
+	console.log(x);
+}
+}
+							</code>
+						</pre>
+				</section>
 
 				<section>
 					<section>
