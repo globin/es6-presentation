@@ -205,6 +205,85 @@
 
 				<section>
 					<section>
+						<h2>Class + subclassing</h2>
+					</section>
+					<section>
+						<h3>Class</h3>
+						<pre>
+							<code data-trim>
+//ES5
+function Circle(radius) {
+	this.radius = radius;
+	Circle.circlesMade++;
+}
+
+Circle.draw = function draw(circle, canvas) {
+	/* Canvas drawing code */
+};
+
+Object.defineProperty(Circle, "circlesMade", {
+	get: function() {
+		return !this._count ? 0 : this._count;
+},
+
+	set: function(val) {
+		this._count = val;
+	}
+});
+
+Circle.prototype = {
+	area: function area() {
+	return Math.pow(this.radius, 2) * Math.PI;
+	}
+};
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Class</h3>
+						<pre>
+							<code>
+//ES6
+class Circle {
+constructor(radius) {
+	this.radius = radius;
+	Circle.circlesMade++;
+};
+
+static draw(circle, canvas) {
+	// Canvas drawing code
+};
+
+static get circlesMade() {
+	return !this._count ? 0 : this._count;
+};
+
+static set circlesMade(val) {
+	this._count = val;
+};
+
+area() {
+	return Math.pow(this.radius, 2) * Math.PI;
+};
+
+get radius() {
+	return this._radius;
+};
+
+set radius(radius) {
+	if (!Number.isInteger(radius))
+		throw new Error("Circle radius must be an integer.");
+		this._radius = radius;
+	};
+}
+							</code>
+						</pre>
+					</section>
+					<section>Subclassing TODO</section>
+				</section>
+
+				<section>
+					<section>
 						<h2>Generators</h2>
 					</section>
 					<section>TODO</section>
