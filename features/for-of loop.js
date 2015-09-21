@@ -28,6 +28,8 @@ arr.forEach(function(entry){
 /*
 Drawbacks of forEach()
 1) you can't use break (gives you "Illegal break statement")
+- use break to exit a loop
+- use return to exit a function
 e.g.  */
 for (var i = 0; i < arr.length; i++) {
  if (i === 2) { break; }
