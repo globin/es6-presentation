@@ -3,13 +3,20 @@
  */
 
 /* FOR-OF LOOP  */
-
+//-----------------------------------------------------------------------
+//SUMMARY:
+/*  1) forEach(function(entry){...}); Problems: no break statement, no return statement possible
+*   2) for-in loop; Problems: loops over object properties
+*   3) => ES6: for-of loop; no weird stuff
+* */
+//-----------------------------------------------------------------------
 arr = ["banana", "orange", "apple"];
 // usually: (old syntax)
 for (var i = 0; i < arr.length; i++){
     console.log(arr[i]);
 }
 //output: banana orange apple
+// what is the problem with this loop version?
 //-----------------------------------------------------------------------
 
 //since ES5 forEach()
