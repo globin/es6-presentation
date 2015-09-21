@@ -108,26 +108,83 @@
                 </section>
 
 				<section>
-					<h2>for-of loop</h2>
+					<section>
+						<h2>for-of loop</h2>
+					</section>
+					<section>
 						<pre>
 							<code>
-var arr = ["banana", "orange", "apple"];
-	for (var i = 0; i < arr.length; i++){
-	arr.forEach(function(entry){
-	console.log(entry);
-});
+//ES5: for-in loop
+var food = ["banana", "orange", "apple"];
+food.NotAnIndex = "123";
 
-arr.name = "FRUITS";
-for(var x in arr){
-	console.log(arr[x]);
+for(var x in food){
+    console.log(x);
 }
-
-for(var x of arr){
-	console.log(x);
-}
-}
+/*
+0
+1
+2
+NotAnIndex
+*/
 							</code>
 						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+//ES5: forEach()
+var food = ["banana", "orange", "apple"];
+
+food.forEach(function(entry){
+if(entry == "orange"){
+   break;
+}
+console.log(entry);
+});
+
+//Uncaught SyntaxError: Illegal break statement
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+//ES5: forEach()
+var food = ["banana", "orange", "apple"];
+
+food.forEach(function(entry){
+    if(entry == "orange"){
+       return;
+    }
+console.log(entry);
+});
+/*
+banana
+apple
+*/
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+//ES6: for-of loop
+var food = ["banana", "orange", "apple"];
+food.NotAnIndex = "123"
+
+for(x of food){
+    console.log(x);
+}
+/*
+banana
+orange
+apple
+*/
+							</code>
+						</pre>
+					</section>
+
 				</section>
 
 				<section>
