@@ -1,6 +1,15 @@
 /**
  * Created by Jan on 26.08.2015.
  */
+//SUMMARY:
+/*  1) Syntactical difference
+ *  2)
+ *  3) be aware:
+  *     - always anonymous
+  *     - not newable (?)
+ * */
+
+
 /*
 * Goal of Arrow Functions:
 * - Lexical this binding (?)
@@ -20,6 +29,9 @@ var total = values.reduce((a, b) => a + b, 0);
 /* Advantages:
  * - you can skip to write "function", "return" and braces => very practical and clean especially when you have nested function expressions *
  * in General: () => {} vs. function () {}
+ * ES5:  function (arguments) { expression }
+   ES6:  arguments => {expression}
+ *
  * braces {} are used if arrow functions contain statements
  * no braces needed if just an expression
  * if braces => does NOT automatically return a value (only if no braces)
@@ -39,6 +51,28 @@ var total = values.reduce((a, b) => a + b, 0);
  }
  }
 * */
+
+// EXAMPLE of THIS in CALLBACK function
+//in ES5
+var Timer = function () {
+    this.seconds = 0;
+
+    var self = this;
+
+    setInterval(function () {
+        self.seconds++;
+    }, 1000);
+};
+
+
+//in ES6
+var Timer = function () {
+    this.seconds = 0;
+
+    setInterval(() => this.seconds++, 1000);
+}
+
+
 
 // EXAMPLE FOR JS OBJECT LITERAL (comma-separated LIST of name-value pairs)
 var Swapper = {

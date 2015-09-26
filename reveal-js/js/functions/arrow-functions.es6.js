@@ -1,5 +1,5 @@
 /* eslint-disable */
-//Syntactical difference
+//Syntactical difference example
 
 //ES5
 var sum = function (a, b) {
@@ -11,3 +11,4 @@ var sum = (a, b) => a + b;
 // --SNIP--
 
 export default { sum: sum() };
+
