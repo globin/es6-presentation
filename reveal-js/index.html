@@ -319,20 +319,32 @@ Circle.draw = function draw(circle, canvas) {
 };
 
 Object.defineProperty(Circle, "circlesMade", {
-	get: function() {
-		return !this._count ? 0 : this._count;
+    get: function() {
+         return !this._count ? 0 : this._count;
 },
 
-	set: function(val) {
-		this._count = val;
-	}
+    set: function(val) {
+         this._count = val;
+    }
 });
 
 Circle.prototype = {
-	area: function area() {
-	return Math.pow(this.radius, 2) * Math.PI;
+    area: function area() {
+          return Math.pow(this.radius, 2) * Math.PI;
 	}
 };
+
+Object.defineProperty(Circle.prototype, "radius", {
+    get: function() {
+         return this._radius;
+    },
+
+    set: function(radius) {
+         if (!Number.isInteger(radius))
+             throw new Error("Circle radius must be an integer.");
+         this._radius = radius;
+         }
+});
 							</code>
 						</pre>
 					</section>
@@ -342,10 +354,10 @@ Circle.prototype = {
 							<code>
 //ES6
 class Circle {
-constructor(radius) {
-	this.radius = radius;
-	Circle.circlesMade++;
-};
+    constructor(radius) {
+        this.radius = radius;
+        Circle.circlesMade++;
+    };
 
 static draw(circle, canvas) {
 	// Canvas drawing code
@@ -376,7 +388,48 @@ set radius(radius) {
 							</code>
 						</pre>
 					</section>
-					<section>Subclassing TODO</section>
+					<section>
+						<h3>Subclassing</h3>
+						<pre>
+							<code>
+//ES6 without subclassing syntax
+class Circle {
+      constructor(radius) {
+         this.radius = radius;
+         Circle.circlesMade++;
+}
+
+// prototype of Circle inherits instance properties of Shape prototype
+Object.setPrototypeOf(Circle.prototype, Shape.prototype);
+
+// Circle inherits static properties of Shape
+Object.setPrototypeOf(Circle, Shape);
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Subclassing</h3>
+						<pre>
+							<code data-trim>
+class ScalableCircle extends Circle {
+    constructor(scalingFactor){
+        super();
+        this.scalingFactor = scalingFactor;
+    }
+
+    get radius() {
+        return this.scalingFactor * super.radius;
+    }
+
+    set radius(radius) {
+        throw new Error("ScalableCircle radius is constant." +
+        "Set scaling factor instead.");
+    }
+}
+
+							</code>
+						</pre>
+					</section>
 				</section>
 
 				<section>

@@ -16,6 +16,23 @@ class Shape {
     }
 }
 
+class ScalableCircle extends Circle {
+    constructor(scalingFactor){
+        super();
+        this.scalingFactor = scalingFactor;
+    }
+
+    get radius() {
+        return this.scalingFactor * super.radius;
+    }
+
+    set radius(radius) {
+        throw new Error("ScalableCircle radius is constant." +
+            "Set scaling factor instead.");
+    }
+}
+
+
 //Goal: Circle should inherit from Shape
 // => use "extends" keyword
 class Circle extends Shape {
