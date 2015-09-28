@@ -7,6 +7,7 @@
  *  3) be aware:
   *     - always anonymous
   *     - not newable (?)
+  *     var Foo = () => {};  var f = new Foo() //TypeError
  * */
 
 

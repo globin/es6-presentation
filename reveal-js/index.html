@@ -184,6 +184,23 @@ apple
 							</code>
 						</pre>
 					</section>
+					<section>
+						<pre>
+							<code data-trim>
+//ES6: for-of loop
+var food = {a: "banana", b:"orange", c: "apple"};
+food.NotAnIndex = "123"
+
+for(x of food){
+console.log(x);
+}
+/*
+TypeError
+for-of only works for iterable objects
+*/
+							</code>
+						</pre>
+					</section>
 
 				</section>
 
@@ -216,6 +233,16 @@ arguments => {expression}
 					<section>
 						<h3> Arrow Functions </h3>
 						<div data-example-code="functions/arrow-functions3"></div>
+					</section>
+					<section>
+						<h3> Arrow Functions </h3>
+							<pre>
+								<code>
+//Arrow Functions are not "newable"
+var Foo = (a) => {a + 1};
+var f = new Foo(); //TypeError (a) => {a+1} is not a constructor
+								</code>
+							</pre>
 					</section>
 					<section>
 						<h3>Default Parameters</h3>

@@ -77,7 +77,7 @@ for(var x of arr){
 - most concise, direct syntax
 - works with break, continue and return
 - loops over data (values in an array), NOT over object properties like for-in
-- works on NodeList, String, Map, Set (works with iterators)
+- works on NodeList, String, Map, Set (works ONLY with iterators, meaning the object must have an iterator method)
     -maybe examples? it starts to get very technical
 */
 
