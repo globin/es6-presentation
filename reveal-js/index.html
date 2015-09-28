@@ -309,42 +309,35 @@ arguments => {expression}
 						<pre>
 							<code data-trim>
 //ES5
+//function constructor
 function Circle(radius) {
 	this.radius = radius;
 	Circle.circlesMade++;
 }
 
+//static property
+Circle.circlesMade = 0;
+
+//static function
 Circle.draw = function draw(circle, canvas) {
 	/* Canvas drawing code */
 };
 
-Object.defineProperty(Circle, "circlesMade", {
-    get: function() {
-         return !this._count ? 0 : this._count;
-},
-
-    set: function(val) {
-         this._count = val;
-    }
-});
-
+//instance properties/functions
 Circle.prototype = {
-    area: function area() {
-          return Math.pow(this.radius, 2) * Math.PI;
-	}
-};
-
-Object.defineProperty(Circle.prototype, "radius", {
-    get: function() {
-         return this._radius;
+    area() {
+        return Math.pow(this.radius, 2) * Math.PI;
     },
 
-    set: function(radius) {
-         if (!Number.isInteger(radius))
-             throw new Error("Circle radius must be an integer.");
-         this._radius = radius;
-         }
-});
+    get radius() {
+        return this.radius;
+    },
+    set radius(radius) {
+       if (!Number.isInteger(radius))
+           throw new Error("Circle radius must be an integer.");
+       this._radius = radius;
+    }
+};
 							</code>
 						</pre>
 					</section>
@@ -354,29 +347,28 @@ Object.defineProperty(Circle.prototype, "radius", {
 							<code>
 //ES6
 class Circle {
+
+//add static property (actually already ES7)
+    static circlesMade = 0;
+
     constructor(radius) {
         this.radius = radius;
         Circle.circlesMade++;
     };
 
+//class property
 static draw(circle, canvas) {
 	// Canvas drawing code
-};
+}
 
-static get circlesMade() {
-	return !this._count ? 0 : this._count;
-};
-
-static set circlesMade(val) {
-	this._count = val;
-};
-
+//instance property
 area() {
 	return Math.pow(this.radius, 2) * Math.PI;
 };
 
+//getter and setter
 get radius() {
-	return this._radius;
+	return this.radius;
 };
 
 set radius(radius) {
@@ -402,8 +394,12 @@ class Circle {
 // prototype of Circle inherits instance properties of Shape prototype
 Object.setPrototypeOf(Circle.prototype, Shape.prototype);
 
+//OR SHOULD I USE: Circle.prototype = Object.create(Shape.prototype)
+
 // Circle inherits static properties of Shape
 Object.setPrototypeOf(Circle, Shape);
+
+//OR SHOULD I USE: Circle = Object.create(Shape)
 							</code>
 						</pre>
 					</section>
