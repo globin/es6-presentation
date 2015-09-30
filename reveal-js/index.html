@@ -47,6 +47,26 @@
 
 				<section>
 					<section>
+						<h2>ES5 Background</h2>
+					</section>
+					<section>
+						<h3>Short Property Notation</h3>
+						<div data-example-code="es5-features/short-props"></div>
+						<aside class="notes">Short form if key == variable</aside>
+					</section>
+					<section>
+						<h3>Short Method Notation</h3>
+						<div data-example-code="es5-features/short-methods"></div>
+						<aside class="notes">Short form for methods</aside>
+					</section>
+					<section>
+						<h3>Trailing Commas</h3>
+						<div data-example-code="es5-features/trailing-comma"></div>
+						<aside class="notes">Legal since ES5 (IE9+)</aside>
+					</section>
+				</section>
+				<section>
+					<section>
 						<h2>Let/Const</h2>
 						<aside class="notes">
 							probably most will know some interesting problems of var, let and const fix these
@@ -77,24 +97,6 @@
 							error results from someVar only being defined inside the if (for, while, you get it)
 						</aside>
 					</section>
-
-					<section>
-						<div data-example-code="let-const-6"></div>
-						(adapted from Understanding ECMAScript 6)
-						<aside class="notes">
-							What is the result here? 3, 3, 3
-							Why? i is defined in the outer scope
-							How to fix? self-executing function.
-						</aside>
-					</section>
-
-					<section>
-						<div data-example-code="let-const-7"></div>
-						<aside class="notes">
-							Works because of the block-level-scoping from before
-						</aside>
-					</section>
-
 
 					<section>
 						<div data-example-code="let-const-4"></div>

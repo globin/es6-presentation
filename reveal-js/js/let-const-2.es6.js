@@ -1,19 +1,15 @@
 /* eslint-disable */
-let var1, var2;
-
-function varExample() {
+function outer() {
     let someVar = 1;
 
     function inner() {
         someVar = 2;
         let someVar = 3;
-        var2 = someVar;
     }
+
     inner();
-
-    var1 = someVar;
+    console.log(someVar);
 }
-varExample();
-// --SNIP--
 
-export default {var1, var2};
+outer();
+// --SNIP--
