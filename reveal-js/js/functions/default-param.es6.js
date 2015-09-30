@@ -3,7 +3,7 @@ function foo(a = "default") {
 }
 
 const withoutParam = foo();
-const withParam = foo("none default");
+const withParam = foo("no default");
 // --SNIP--
 
 export default { withoutParam, withParam };

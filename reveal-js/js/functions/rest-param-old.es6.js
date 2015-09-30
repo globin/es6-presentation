@@ -4,4 +4,7 @@ function foo(arg1) {
     return { arg1, rest };
 }
 
-export default foo(1, 2, 3, 4);
+var result = foo(1, 2, 3, 4);
+// --SNIP--
+
+export default { result };

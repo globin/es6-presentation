@@ -1,3 +1,4 @@
+/* eslint-disable */
 //ES5 scope of "this"
 function add(){
     var self = this;    // <-- "hack"
