@@ -134,6 +134,28 @@ function (arguments) { expression }
                         <div data-example-code="functions/arrow-functions"></div>
                     </section>
                     <section>
+                        <pre>
+                            <code>
+//ES5 scope of "this"
+function add() {
+    this.counter = 0;
+
+    function plus() {
+        this.counter += 1;
+    }
+    plus();
+}
+
+var myObject = {};
+
+myObject.test = add;
+myObject.test();
+
+//TypeError: cannot read property 'counter' of undefined
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
                         <h3> Arrow Functions </h3>
                         <div data-example-code="functions/arrow-functions2"></div>
                     </section>
@@ -426,22 +448,20 @@ class Circle {
                     </section>
                     <section>
                         <h3>Subclassing</h3>
-                        <pre><code>//ES6 without subclassing syntax
-class Circle {
-      constructor(radius) {
-         this.radius = radius;
-         Circle.circlesMade++;
+                        <pre>
+                            <code>
+//ES5
+//function constructor
+function Circle(radius) {
+    this.radius = radius;
+    Circle.circlesMade++;
 }
 
 // prototype of Circle inherits instance properties of Shape prototype
-Object.setPrototypeOf(Circle.prototype, Shape.prototype);
-
-//OR SHOULD I USE: Circle.prototype = Object.create(Shape.prototype)
+Circle.prototype = Object.create(Shape.prototype)
 
 // Circle inherits static properties of Shape
-Object.setPrototypeOf(Circle, Shape);
-
-//OR SHOULD I USE: Circle = Object.create(Shape)
+Circle = Object.create(Shape)
                             </code>
                         </pre>
                     </section>
@@ -449,6 +469,7 @@ Object.setPrototypeOf(Circle, Shape);
                         <h3>Subclassing</h3>
                         <pre>
                             <code data-trim>
+//ES6
 class ScalableCircle extends Circle {
     constructor(scalingFactor) {
         super();
