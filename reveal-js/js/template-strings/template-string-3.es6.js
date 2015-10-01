@@ -1,3 +1,4 @@
+/* eslint-disable */
 //multi-line strings w/o hacks
 var text = `this is
 a random
@@ -15,5 +16,5 @@ text with whitespaces
 
 // --SNIP--
 
-export default {}
+export default {};
 

@@ -61,7 +61,7 @@
                     </section>
                     <section>
                         <h3>Trailing Commas</h3>
-                        <div data-example-code="es5-features/trailing-comma"></div>
+                        <div data-example-code="es5-features/trailing-commas"></div>
                         <aside class="notes">Legal since ES5 (IE9+)</aside>
                     </section>
                 </section>
@@ -202,7 +202,7 @@ var f = new Foo(); //TypeError (a) => {a+1} is not a constructor
 var food = ["banana", "orange", "apple"];
 food.NotAnIndex = "123";
 
-for(var x in food){
+for (var x in food) {
     console.log(x);
 }
 /*
@@ -220,11 +220,12 @@ NotAnIndex
 //ES5: forEach()
 var food = ["banana", "orange", "apple"];
 
-food.forEach(function(entry){
-if(entry == "orange"){
-   break;
-}
-console.log(entry);
+food.forEach(function (entry) {
+    if (entry == "orange") {
+       break;
+    }
+
+    console.log(entry);
 });
 
 //Uncaught SyntaxError: Illegal break statement
@@ -237,11 +238,12 @@ console.log(entry);
 //ES5: forEach()
 var food = ["banana", "orange", "apple"];
 
-food.forEach(function(entry){
-    if (entry == "orange"){
+food.forEach(function (entry) {
+    if (entry == "orange") {
         return;
     }
-console.log(entry);
+
+    console.log(entry);
 });
 /*
 banana
@@ -257,7 +259,7 @@ apple
 var food = ["banana", "orange", "apple"];
 food.NotAnIndex = "123"
 
-for(x of food){
+for (x of food) {
     console.log(x);
 }
 /*
@@ -275,8 +277,8 @@ apple
 var food = {a: "banana", b:"orange", c: "apple"};
 food.NotAnIndex = "123"
 
-for(x of food){
-console.log(x);
+for (x of food) {
+    console.log(x);
 }
 /*
 TypeError
@@ -338,7 +340,7 @@ for-of only works for iterable objects
 
                 <section>
                     <section>
-                        <h2>Class + subclassing</h2>
+                        <h2>Class + Subclassing</h2>
                     </section>
                     <section>
                         <h3>Class</h3>
@@ -366,7 +368,7 @@ Circle.prototype = {
     },
 
     get radius() {
-        return this.radius;
+        return this._radius;
     },
     set radius(radius) {
        if (!Number.isInteger(radius))
@@ -384,43 +386,42 @@ Circle.prototype = {
 //ES6
 class Circle {
 
-//add static property (actually already ES7)
+    //add static property (actually already ES7)
     static circlesMade = 0;
 
     constructor(radius) {
         this.radius = radius;
         Circle.circlesMade++;
-    };
+    }
 
-//class property
-static draw(circle, canvas) {
-    // Canvas drawing code
-}
+    //class property
+    static draw(circle, canvas) {
+        // Canvas drawing code
+    }
 
-//instance property
-area() {
-    return Math.pow(this.radius, 2) * Math.PI;
-};
+    //instance property
+    area() {
+        return Math.pow(this.radius, 2) * Math.PI;
+    }
 
-//getter and setter
-get radius() {
-    return this.radius;
-};
+    //getter and setter
+    get radius() {
+        return this.radius;
+    }
 
-set radius(radius) {
-    if (!Number.isInteger(radius))
-        throw new Error("Circle radius must be an integer.");
-        this._radius = radius;
-    };
+    set radius(radius) {
+        if (!Number.isInteger(radius))
+            throw new Error("Circle radius must be an integer.");
+            this._radius = radius;
+        };
+    }
 }
                             </code>
                         </pre>
                     </section>
                     <section>
                         <h3>Subclassing</h3>
-                        <pre>
-                            <code>
-//ES6 without subclassing syntax
+                        <pre><code>//ES6 without subclassing syntax
 class Circle {
       constructor(radius) {
          this.radius = radius;
@@ -444,7 +445,7 @@ Object.setPrototypeOf(Circle, Shape);
                         <pre>
                             <code data-trim>
 class ScalableCircle extends Circle {
-    constructor(scalingFactor){
+    constructor(scalingFactor) {
         super();
         this.scalingFactor = scalingFactor;
     }
@@ -458,7 +459,6 @@ class ScalableCircle extends Circle {
         "Set scaling factor instead.");
     }
 }
-
                             </code>
                         </pre>
                     </section>
@@ -466,16 +466,33 @@ class ScalableCircle extends Circle {
 
                 <section>
                     <section>
-                        <h2>Generators</h2>
+                        <h2>
+                            Modules
+                        </h2>
                     </section>
                     <section>
-                        <div data-example-code="generators/basic"></div>
+                        <div data-example-code="modules/amd"></div>
                     </section>
                     <section>
-                        <div data-example-code="generators/fibonacci"></div>
+                        <div data-example-code="modules/common"></div>
                     </section>
                     <section>
-                        <div data-example-code="generators/countdown2"></div>
+                        <pre><code>
+import http from 'http';
+
+var toExport = {};
+
+export default toExport;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <pre><code>
+export { named1, named2 }
+
+// -----
+
+import { named1, named2 } from 'module-name';
+                        </code></pre>
                     </section>
                 </section>
 
@@ -496,6 +513,21 @@ class ScalableCircle extends Circle {
 
                 <section>
                     <section>
+                        <h2>Generators</h2>
+                    </section>
+                    <section>
+                        <div data-example-code="generators/basic"></div>
+                    </section>
+                    <section>
+                        <div data-example-code="generators/fibonacci"></div>
+                    </section>
+                    <section>
+                        <div data-example-code="generators/countdown2"></div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
                         <h2>Overview all features</h2>
                     </section>
                     <section>
@@ -509,10 +541,10 @@ class ScalableCircle extends Circle {
                             <li>for-of loop</li>
                             <li>destructuring</li>
                             <li>class + subclassing</li>
-                            <li>generators</li>
-                            <li>template strings</li>
                             <li>modules</li>
+                            <li>template strings</li>
                             <li>promises</li>
+                            <li>generators</li>
                         </ul>
                     </section>
                     <section>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 var name = 'David';
 
 //ES5
