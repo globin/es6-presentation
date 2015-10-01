@@ -49,3 +49,27 @@ Reveal.initialize({
         }
     ]
 });
+
+window.addEventListener('mousedown', (e) => {
+    const runButton = Reveal.getCurrentSlide().querySelector('button:not([disabled])');
+    if (runButton && e.which === 2) {
+        runButton.click();
+
+        return;
+    }
+
+    switch (e.which) {
+        case 2:
+            Reveal.next();
+            break;
+        case 3:
+            Reveal.prev();
+            break;
+        default:
+            break;
+    }
+});
+
+window.addEventListener('contextmenu', (evt) => {
+    evt.preventDefault();
+});
