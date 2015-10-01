@@ -47,7 +47,7 @@
 
                 <section>
                     <section>
-                        <h2>ES5 Background</h2>
+                        <h2>ES5 Recap</h2>
                     </section>
                     <section>
                         <h3>Short Property Notation</h3>
@@ -61,7 +61,7 @@
                     </section>
                     <section>
                         <h3>Trailing Commas</h3>
-                        <div data-example-code="es5-features/trailing-comma"></div>
+                        <div data-example-code="es5-features/trailing-commas"></div>
                         <aside class="notes">Legal since ES5 (IE9+)</aside>
                     </section>
                 </section>
@@ -73,6 +73,7 @@
                         </aside>
                     </section>
                     <section>
+                        <h3>ES 5</h3>
                         <div data-example-code="let-const"></div>
                         <aside class="notes">
                             Imagine some code between the first assignment and var. Want to set the outer value to
@@ -83,6 +84,7 @@
                     </section>
 
                     <section>
+                        <h3>ES 6</h3>
                         <div data-example-code="let-const-2"></div>
                         <aside class="notes">
                             Now we get a nice error.
@@ -111,103 +113,6 @@
 
                 <section>
                     <section>
-                        <h2>for-of loop</h2>
-                    </section>
-                    <section>
-                        <pre>
-                            <code>
-//ES5: for-in loop
-var food = ["banana", "orange", "apple"];
-food.NotAnIndex = "123";
-
-for(var x in food){
-    console.log(x);
-}
-/*
-0
-1
-2
-NotAnIndex
-*/
-                            </code>
-                        </pre>
-                    </section>
-                    <section>
-                        <pre>
-                            <code data-trim>
-//ES5: forEach()
-var food = ["banana", "orange", "apple"];
-
-food.forEach(function(entry){
-if(entry == "orange"){
-   break;
-}
-console.log(entry);
-});
-
-//Uncaught SyntaxError: Illegal break statement
-                            </code>
-                        </pre>
-                    </section>
-                    <section>
-                        <pre>
-                            <code data-trim>
-//ES5: forEach()
-var food = ["banana", "orange", "apple"];
-
-food.forEach(function(entry){
-    if(entry == "orange"){
-       return;
-    }
-console.log(entry);
-});
-/*
-banana
-apple
-*/
-                            </code>
-                        </pre>
-                    </section>
-                    <section>
-                        <pre>
-                            <code data-trim>
-//ES6: for-of loop
-var food = ["banana", "orange", "apple"];
-food.NotAnIndex = "123"
-
-for(x of food){
-    console.log(x);
-}
-/*
-banana
-orange
-apple
-*/
-                            </code>
-                        </pre>
-                    </section>
-                    <section>
-                        <pre>
-                            <code data-trim>
-//ES6: for-of loop
-var food = {a: "banana", b:"orange", c: "apple"};
-food.NotAnIndex = "123"
-
-for(x of food){
-console.log(x);
-}
-/*
-TypeError
-for-of only works for iterable objects
-*/
-                            </code>
-                        </pre>
-                    </section>
-
-                </section>
-
-                <section>
-                    <section>
                         <h2>Functions</h2>
                     </section>
                     <section>
@@ -220,35 +125,13 @@ for-of only works for iterable objects
 function (arguments) { expression }
 
 //ES6
-arguments => {expression}
+(arguments) => { expression }
                                 </code>
                             </pre>
                     </section>
                     <section>
                         <h3> Arrow Functions </h3>
                         <div data-example-code="functions/arrow-functions"></div>
-                    </section>
-                    <section>
-                        <pre>
-                            <code>
-function add(){
-    this.counter = 0;
-
-    function plus(){
-        this.counter += 1;
-    }
-    plus();
-}
-
-var myObject = {};
-
-myObject.test = add;
-myObject.test();
-
-//Undefined property: counter
-                            </code>
-                        </pre>
-
                     </section>
                     <section>
                         <h3> Arrow Functions </h3>
@@ -312,6 +195,105 @@ var f = new Foo(); //TypeError (a) => {a+1} is not a constructor
 
                 <section>
                     <section>
+                        <h2>for-of loop</h2>
+                    </section>
+                    <section>
+                        <pre>
+                            <code>
+//ES5: for-in loop
+var food = ["banana", "orange", "apple"];
+food.NotAnIndex = "123";
+
+for (var x in food) {
+    console.log(x);
+}
+/*
+0
+1
+2
+NotAnIndex
+*/
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <pre>
+                            <code data-trim>
+//ES5: forEach()
+var food = ["banana", "orange", "apple"];
+
+food.forEach(function (entry) {
+    if (entry == "orange") {
+       break;
+    }
+
+    console.log(entry);
+});
+
+//Uncaught SyntaxError: Illegal break statement
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <pre>
+                            <code data-trim>
+//ES5: forEach()
+var food = ["banana", "orange", "apple"];
+
+food.forEach(function (entry) {
+    if (entry == "orange") {
+        return;
+    }
+
+    console.log(entry);
+});
+/*
+banana
+apple
+*/
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <pre>
+                            <code data-trim>
+//ES6: for-of loop
+var food = ["banana", "orange", "apple"];
+food.NotAnIndex = "123"
+
+for (x of food) {
+    console.log(x);
+}
+/*
+banana
+orange
+apple
+*/
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <pre>
+                            <code data-trim>
+//ES6: for-of loop
+var food = {a: "banana", b:"orange", c: "apple"};
+food.NotAnIndex = "123"
+
+for (x of food) {
+    console.log(x);
+}
+/*
+TypeError
+for-of only works for iterable objects
+*/
+                            </code>
+                        </pre>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
                         <h2>Destructuring</h2>
                     </section>
                     <section>
@@ -360,12 +342,7 @@ var f = new Foo(); //TypeError (a) => {a+1} is not a constructor
 
                 <section>
                     <section>
-                        <h2>Class + subclassing</h2>
-//function constructor
-function Circle(radius) {
-    this.radius = radius;
-    Circle.circlesMade++;
-}
+                        <h2>Class + Subclassing</h2>
                     </section>
                     <section>
                         <h3>Class</h3>
@@ -411,43 +388,45 @@ Circle.prototype = {
 //ES6
 class Circle {
 
-//add static property (actually already ES7)
+    //add static property (actually already ES7)
     static circlesMade = 0;
+
+    // instance property
+    color = 'red';
 
     constructor(radius) {
         this.radius = radius;
         Circle.circlesMade++;
-    };
+    }
 
-//class property
-static draw(circle, canvas) {
-    // Canvas drawing code
-}
+    //class method
+    static draw(circle, canvas) {
+        // Canvas drawing code
+    }
 
-//instance property
-area() {
-    return Math.pow(this.radius, 2) * Math.PI;
-};
+    //instance method
+    area() {
+        return Math.pow(this.radius, 2) * Math.PI;
+    }
 
-//getter and setter
-get radius() {
-    return this.radius;
-};
+    //getter and setter
+    get radius() {
+        return this.radius;
+    }
 
-set radius(radius) {
-    if (!Number.isInteger(radius))
-        throw new Error("Circle radius must be an integer.");
-        this._radius = radius;
-    };
+    set radius(radius) {
+        if (!Number.isInteger(radius))
+            throw new Error("Circle radius must be an integer.");
+            this._radius = radius;
+        };
+    }
 }
                             </code>
                         </pre>
                     </section>
                     <section>
                         <h3>Subclassing</h3>
-                        <pre>
-                            <code>
-//ES6 without subclassing syntax
+                        <pre><code>//ES6 without subclassing syntax
 class Circle {
       constructor(radius) {
          this.radius = radius;
@@ -471,7 +450,7 @@ Object.setPrototypeOf(Circle, Shape);
                         <pre>
                             <code data-trim>
 class ScalableCircle extends Circle {
-    constructor(scalingFactor){
+    constructor(scalingFactor) {
         super();
         this.scalingFactor = scalingFactor;
     }
@@ -485,7 +464,6 @@ class ScalableCircle extends Circle {
         "Set scaling factor instead.");
     }
 }
-
                             </code>
                         </pre>
                     </section>
@@ -493,16 +471,33 @@ class ScalableCircle extends Circle {
 
                 <section>
                     <section>
-                        <h2>Generators</h2>
+                        <h2>
+                            Modules
+                        </h2>
                     </section>
                     <section>
-                        <div data-example-code="generators/basic"></div>
+                        <div data-example-code="modules/amd"></div>
                     </section>
                     <section>
-                        <div data-example-code="generators/fibonacci"></div>
+                        <div data-example-code="modules/common"></div>
                     </section>
                     <section>
-                        <div data-example-code="generators/countdown2"></div>
+                        <pre><code>
+import http from 'http';
+
+var toExport = {};
+
+export default toExport;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <pre><code>
+export { named1, named2 }
+
+// -----
+
+import { named1, named2 } from 'module-name';
+                        </code></pre>
                     </section>
                 </section>
 
@@ -519,66 +514,73 @@ class ScalableCircle extends Circle {
                     <section>
                         <div data-example-code="template-strings/template-string-3"></div>
                     </section>
-
                 </section>
 
                 <section>
                     <section>
-                        <h2>Transpiler (Babel)</h2>
+                        <h2>Promises</h2>
                     </section>
                     <section>
-                        TODO
-                        (make sure to always include polyfill and optional ['es6.spec.blockScoping'])
+                        <div data-example-code="generators/basic"></div>
+                    </section>
+                    <section>
+                        <div data-example-code="generators/fibonacci"></div>
+                    </section>
+                    <section>
+                        <div data-example-code="generators/countdown2"></div>
                     </section>
                 </section>
 
                 <section>
                     <section>
                         <h2>Overview all features</h2>
-
                     </section>
                     <section>
                         <h2>covered here</h2>
-                        <p>let/const</p>
-                        <p>arrow functions</p>
-                        <p>default parameters</p>
-                        <p>rest parameters</p>
-                        <p>spread operator</p>
-                        <p>for-of loop</p>
-                        <p>destructuring</p>
-                        <p>class + subclassing</p>
-                        <p>generators</p>
-                        <p>template strings</p>
+                        <ul>
+                            <li>let/const</li>
+                            <li>Arrow Functions</li>
+                            <li>Default Parameters</li>
+                            <li>Rest Parameters</li>
+                            <li>Spread Operator</li>
+                            <li>for-of Loop</li>
+                            <li>Destructuring</li>
+                            <li>Class + Subclassing</li>
+                            <li>Modules</li>
+                            <li>Template Strings</li>
+                            <li>Promises</li>
+                        </ul>
                     </section>
                     <section>
-                        <h2>other features</h2>
-                        <p>enhanced object literals    </p>
-                        <p>unicode</p>
-                        <p>modules</p>
-                        <p>module loaders</p>
-                        <p>map + set + weakmap + weakset</p>
-                        <p>proxies</p>
-                        <p>symbols</p>
-                        <p>subclassable built-ins</p>
-                        <p>promises</p>
-                        <p>math + number + string + array + object APIs</p>
-                        <p>binary and octal literals</p>
-                        <p>reflect api</p>
+                        <h2>Other Features</h2>
+                        <ul>
+                            <li>Generators</li>
+                            <li>Unicode</li>
+                            <li>Map + Set + WeakMap + WeakSet</li>
+                            <li>Proxy</li>
+                            <li>Symbol</li>
+                            <li>Subclassable Built-Ins</li>
+                            <li>Math + Number + String + Array + Object APIs</li>
+                            <li>Binary and Octal Literals</li>
+                            <li>Reflect API</li>
+                        </ul>
                     </section>
-
+                    <section>
+                        <h2>ES 7</h2>
+                        <ul>
+                            <li>Decorators</li>
+                            <li>Bind Operator</li>
+                            <li>async/await</li>
+                            <li>list/generator comprehensions</li>
+                        </ul>
+                    </section>
                 </section>
             </div>
-
         </div>
 
         <script src="lib/js/head.min.js"></script>
         <script src="node_modules/babel-core/browser-polyfill.js"></script>
         <script src="node_modules/systemjs/dist/system.js"></script>
         <script src="build/module.js"></script>
-
-        <script>
-
-
-        </script>
     </body>
 </html>
