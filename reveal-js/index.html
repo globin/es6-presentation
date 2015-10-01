@@ -73,6 +73,7 @@
                         </aside>
                     </section>
                     <section>
+                        <h3>ES 5</h3>
                         <div data-example-code="let-const"></div>
                         <aside class="notes">
                             Imagine some code between the first assignment and var. Want to set the outer value to
@@ -83,6 +84,7 @@
                     </section>
 
                     <section>
+                        <h3>ES 6</h3>
                         <div data-example-code="let-const-2"></div>
                         <aside class="notes">
                             Now we get a nice error.
@@ -123,7 +125,7 @@
 function (arguments) { expression }
 
 //ES6
-arguments => {expression}
+(arguments) => { expression }
                                 </code>
                             </pre>
                     </section>
@@ -389,17 +391,20 @@ class Circle {
     //add static property (actually already ES7)
     static circlesMade = 0;
 
+    // instance property
+    color = 'red';
+
     constructor(radius) {
         this.radius = radius;
         Circle.circlesMade++;
     }
 
-    //class property
+    //class method
     static draw(circle, canvas) {
         // Canvas drawing code
     }
 
-    //instance property
+    //instance method
     area() {
         return Math.pow(this.radius, 2) * Math.PI;
     }
@@ -513,7 +518,7 @@ import { named1, named2 } from 'module-name';
 
                 <section>
                     <section>
-                        <h2>Generators</h2>
+                        <h2>Promises</h2>
                     </section>
                     <section>
                         <div data-example-code="generators/basic"></div>
@@ -534,22 +539,22 @@ import { named1, named2 } from 'module-name';
                         <h2>covered here</h2>
                         <ul>
                             <li>let/const</li>
-                            <li>arrow functions</li>
-                            <li>default parameters</li>
-                            <li>rest parameters</li>
-                            <li>spread operator</li>
-                            <li>for-of loop</li>
-                            <li>destructuring</li>
-                            <li>class + subclassing</li>
-                            <li>modules</li>
-                            <li>template strings</li>
-                            <li>promises</li>
-                            <li>generators</li>
+                            <li>Arrow Functions</li>
+                            <li>Default Parameters</li>
+                            <li>Rest Parameters</li>
+                            <li>Spread Operator</li>
+                            <li>for-of Loop</li>
+                            <li>Destructuring</li>
+                            <li>Class + Subclassing</li>
+                            <li>Modules</li>
+                            <li>Template Strings</li>
+                            <li>Promises</li>
                         </ul>
                     </section>
                     <section>
                         <h2>Other Features</h2>
                         <ul>
+                            <li>Generators</li>
                             <li>Unicode</li>
                             <li>Map + Set + WeakMap + WeakSet</li>
                             <li>Proxy</li>
