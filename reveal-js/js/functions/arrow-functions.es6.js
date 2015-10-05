@@ -10,5 +10,5 @@ var sum = function (a, b) {
 var sum = (a, b) => a + b;
 // --SNIP--
 
-export default { sum: sum() };
+export default { };
 

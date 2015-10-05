@@ -14,3 +14,5 @@ var myObject = {};
 
 myObject.test = add;
 myObject.test();
+
+export default { myObject };

@@ -325,6 +325,12 @@ for-of only works for iterable objects
                         </aside>
                     </section>
                     <section>
+                        <div data-example-code="destructuring/undefined"></div>
+                        <aside class="notes">
+                            Non-existant values are undefined
+                        </aside>
+                    </section>
+                    <section>
                         <div data-example-code="destructuring/nested"></div>
                         <aside class="notes">
                             Can be nested
@@ -497,13 +503,25 @@ class ScalableCircle extends Circle {
                         </h2>
                     </section>
                     <section>
-                        <div data-example-code="modules/amd"></div>
+                        <pre><code data-trim>
+define(['http'], function (http) {
+    var toExport = {};
+
+    return toExport;
+});
+                        </code></pre>
                     </section>
                     <section>
-                        <div data-example-code="modules/common"></div>
+                        <pre><code data-trim>
+var http = require('http');
+
+var toExport = {};
+
+module.exports = toExport;
+                        </code></pre>
                     </section>
                     <section>
-                        <pre><code>
+                        <pre><code data-trim>
 import http from 'http';
 
 var toExport = {};
@@ -512,7 +530,7 @@ export default toExport;
                         </code></pre>
                     </section>
                     <section>
-                        <pre><code>
+                        <pre><code data-trim>
 export { named1, named2 }
 
 // -----
@@ -542,13 +560,31 @@ import { named1, named2 } from 'module-name';
                         <h2>Promises</h2>
                     </section>
                     <section>
-                        <div data-example-code="promises/basic"></div>
+                        <pre><code data-trim>
+fetch(someUrl)
+    .then((response) => response.text())
+    .catch((error) => handleError(error))
+    .then((responseText) => console.log(responseText));
+                        </code></pre>
                     </section>
                     <section>
-                        <div data-example-code="promises/multiple"></div>
+                        <pre><code data-trim>
+let promises = [fetch(someUrl), fetch(someOtherUrl), 'string content'];
+
+Promise.all(promises).then(function (texts) {
+    texts.forEach((text) => console.log())
+});
+                        </code></pre>
                     </section>
                     <section>
-                        <div data-example-code="promises/create"></div>
+                        <pre><code data-trim>
+let promise1 = new Promise(function (resolve, reject) {
+    let value = doStuffToCreateValue();
+    resolve(value);
+});
+
+let promise2 = Promise.resolve(otherValue);
+                        </code></pre>
                     </section>
                 </section>
 
@@ -594,6 +630,10 @@ import { named1, named2 } from 'module-name';
                             <li>async/await</li>
                             <li>List/Generator Comprehensions</li>
                         </ul>
+                    </section>
+                    <section>
+                        <h2>Compatibility Table</h2>
+                        <a href="http://kangax.github.io/compat-table/es6/">http://kangax.github.io/compat-table/es6/</a>
                     </section>
                 </section>
             </div>

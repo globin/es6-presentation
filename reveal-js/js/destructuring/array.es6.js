@@ -1,4 +1,4 @@
-const [first, second, missing] = [1, 2];
+const [first, second] = [1, 2];
 // --SNIP--
 
-export default { first, second, missing };
+export default { first, second };

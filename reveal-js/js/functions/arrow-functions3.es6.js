@@ -12,5 +12,5 @@ myObject.test = add;
 myObject.test();
 // --SNIP--
 
-export default {};
+export default { myObject };
 
